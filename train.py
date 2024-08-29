@@ -168,6 +168,12 @@ class BigramLanguageModel(nn.Module):
 
     def generate(self, idx, max_new_tokens):
         # idx is (B, T) array of indices in the current context
+        """
+        Take a batch of indices and generate up to max_new_tokens more tokens based on the model.
+
+        The function takes in a tensor idx of shape (B, T) where B is the batch size and T is the current sequence length.
+        It returns a tensor of shape (B, T+max_new_tokens) of the generated indices.
+        """
         for _ in range(max_new_tokens):
             # crop idx to the last block_size tokens
             idx_cond = idx[:, -block_size:]
