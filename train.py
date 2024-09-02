@@ -74,6 +74,12 @@ class Head(nn.Module):
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x):
+        """
+        computes a single head of attention
+
+        x: input (B, T, C)
+        returns: (B, T, C)
+        """
         B,T,C = x.shape
         k = self.key(x)   # (B,T,C)
         q = self.query(x) # (B,T,C)
